@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href = "@{/css/bootstrap.min.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="container pt-5 ">
+
+    <div class="container mt-5 bg-body-secondary rounded shadow  ">
+        <h1 class="py-5 display-3">Create Task</h1>
+        <form th:action="@{/tasks/save}" th:object="${task}" method="post">
+            <div class="mb-3 ">
+                <label for="title" class="form-label ">Title</label>
+                <input type="text" class="form-control" id="title" name="title" th:field="*{title}">
+                <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label bold">Description</label>
+                <textarea class="form-control" id="content" name="content" rows="3" th:field="*{content}"></textarea>
+                <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger"></p>
+
+            </div>
+            <div class="mb-3">
+                <label for="priority" class="form-label">Priority</label>
+                <select class="form-select" id="priority" name="priority" th:field="*{priority}">
+                    <option value="LOW">Low</option>
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="HIGH">High</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="deadline" class="form-label">Deadline</label>
+                <input type="datetime-local" class="form-control" id="deadline" name="deadline" th:field="*{deadline}">
+                <p th:if="${#fields.hasErrors('deadline')}" class="text-danger" th:errors="*{deadline}"></p>
+
+            </div>
+            <div class="p-3 d-flex justify-content-end  ">
+                <button type="submit" class="btn btn-primary shadow">Submit</button>
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
